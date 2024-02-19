@@ -17,7 +17,7 @@ def zz():
 	 	 um = str("".join(random.choice(user)for x in range(1)))
 	 	 ur = str("".join(random.choice(user)for x in range(1)))
 	 	 a1 = us+'.'+um+'.'+ur
-	  a2 = us+'_'+um+'_'+ur
+	     a2 = us+'_'+um+'_'+ur
 			a3 = us+'_'+us+'.'+um
 			a4 = us+'_'+um+'_'us
 			a5 = us+'.'+um+'.'us
