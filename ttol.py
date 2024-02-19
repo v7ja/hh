@@ -65,7 +65,16 @@ C = "\033[1;97m" #ابيض
 B = '\033[2;36m'#سمائي
 Y = '\033[1;34m' #ازرق فاتح.
 C1 = '\033[2;35m'
-
+import json
+import requests
+import os
+import random
+from user_agent import generate_user_agent
+import datetime
+import json
+from time import sleep
+from os import system
+from datetime import date
 												
 
 print('')
@@ -74,7 +83,8 @@ os.system("clear")
 H="\x1b[38;5;208m" #
 
 
-
+a=0
+v=0
 def HANI():
  head={'Cookie':'mid=YF55GAALAAF55lDR3NkHNG4S-vjw; ig_did=F3A1F3B5-01DB-457B-A6FA-6F83AD1717DE; ig_nrcb=1; shbid=13126; shbts=1616804137.1316793; rur=PRN; ig_direct_region_hint=ATN; csrftoken=ot7HDQ6ZX2EPbVQe1P9Nqvm1WmMkzKn2; ds_user_id=46165248972; sessionid='+sid}
  while True:
