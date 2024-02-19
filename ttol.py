@@ -13,7 +13,7 @@ def zz():
  global zok
 	while True:
  	try:
-	   	 us = str("".join(random.choice(user)for x in range(1)))
+	   	  us = str("".join(random.choice(user)for x in range(1)))
 	 	   um = str("".join(random.choice(user)for x in range(1)))
 	 	   ur = str("".join(random.choice(user)for x in range(1)))
 	 	   a1 = us+'.'+um+'.'+ur
