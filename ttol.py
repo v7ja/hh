@@ -116,9 +116,9 @@ print('\033[1;33m ســحب لـــســتــه عشوائي [1]\nحــــ
 try:
 	print('')
 	HA = int(input(' \033[1;36m  : اختار رقم للاستمرار [❖]  '))
-	system("clear")
+	os.system("clear")
 except ValueError as error:
-	system('clear')
+	os.system('clear')
 	print('Error - خـطـا')
 	exit()
 if HA ==1:
@@ -126,6 +126,6 @@ if HA ==1:
 elif HA ==0:
     O()	 
 else:
-	system('clear')
+	os.system('clear')
 	print('Error')
 	exit()
