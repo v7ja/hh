@@ -1,5 +1,6 @@
 import requests
 import random
+import threading
 
 iD = input('Enter ID Bot: ')
 print('\n')
@@ -109,3 +110,11 @@ def zz():
 
 while True:
     zz()
+    Threads=[] 
+for t in range(10):
+    x = threading.Thread(target=zz)
+    x.start()
+    Threads.append(x)
+for Th in Threads:
+    Th.join()
+    
