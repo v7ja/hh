@@ -86,12 +86,12 @@ def zz():
 
             if "username" in rr:
                 zok += 1
-                print(f'{zok}: Bad User: {usery}')
+                print(f'{zok}: BaD uSeR : {usery}')
 
             elif 'email_is_taken' in rr:
                 zok += 1
                 print(rr)
-                print(f'{zok}: Done User: {usery}')
+                print(f'{zok}: DoNe uSeR : {usery}')
 
                 abood = """
                 𝖽𝗈𝗇𝖾 𝗎𝗌𝖾𝗋 𝖼𝗅𝗂𝗆𝖾𝖽 </>
@@ -102,7 +102,7 @@ def zz():
 
             else:
                 zok += 1
-                print(f'{zok}: Bad User: {usery}')
+                print(f'{zok}: BaD uSeR : {usery}')
 
         except:
             zz()
