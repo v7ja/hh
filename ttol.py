@@ -5,16 +5,15 @@ P = Fore.GREEN
 s = Fore.LIGHTRED_EX
 y = Fore.YELLOW
 fz = datetime.datetime.now()
-print(y+f"""
-**********************************
-*  {fz}    *                                                                   
-*                                *                                               
-* - [ Checker TiKTok V.507 ] -   *
-*                                *
-* Tool developer -> : @Filza_507 *
-* Channel TeleGram -> : @TweakPY * 
-**********************************
-""")
+Z = '\033[1;31m' ; X = '\033[1;33m' ; F = '\033[2;32m' ; B = '\x1b[38;5;208m' ; Y = '\033[1;34m' ; C = "\033[1;97m" ; E = '\033[1;31m' ; G = '\033[1;32m' ; S = '\033[1;33m' ; A = '\033[1;31m' ; logo =f""" 
+                    {Z}< {C}cHecker Tik v3{Z} >    
+     {C}    ╔{Z}══════════{C}═════════════════════{Z}═════════{C}╗
+      {Z}   ║{C}<{X}\{C}> {C} Programier{A}  : {C}@kckkkkc{Z}           ║
+      {C}   ║{C}<{X}\{C}>  {C}Telegram{A}    : {C}@ShePython{C}         ║
+      {C}   ║{C}<{X}\{C}>  {C}YouTube{A}     : {C}r2-{C}                ║
+      {A}   ║{C}<{X}\{C}>  {C}Second Account{Z}  : {C}@KeePusa{A}       ║
+      {C}   ╚{Z}══════════{C}══════════════════════{Z}════════{C}╝
+""" ; print(logo)
 sa="4"
 if sa =="4":
     uesr = ''   
@@ -58,7 +57,7 @@ while True:
 	if rq.status_code == 404:
 		print(P+'[+] Available >> {}'.format(Check))
 		tele = (
-			f'https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={j}\n 𝚄𝚂𝙴𝚁 : {Check}\n{x2}')
+			f'https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={j}\n⦗ 𝘂𝘀𝗲𝗿 ⦘ | ⦗ {Check} ⦘\n{x2}')
 		re = requests.post(tele)
 		with open('Tik-HuNt.txt', 'a') as x:
 			x.write(Check + '\n')
