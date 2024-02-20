@@ -5,14 +5,14 @@ P = Fore.GREEN
 s = Fore.LIGHTRED_EX
 y = Fore.YELLOW
 fz = datetime.datetime.now()
-Z = '\033[1;31m' ; X = '\033[1;33m' ; F = '\033[2;32m' ; B = '\x1b[38;5;208m' ; Y = '\033[1;34m' ; C = "\033[1;97m" ; E = '\033[1;31m' ; G = '\033[1;32m' ; S = '\033[1;33m' ; A = '\033[1;31m' ; logo =f""" 
-                    {Z}< {C}cHecker Tik v3{Z} >    
-     {C}    ╔{Z}══════════{C}═════════════════════{Z}═════════{C}╗
-      {Z}   ║{C}<{X}\{C}> {C} Programier{A}  : {C}@kckkkkc{Z}           ║
-      {C}   ║{C}<{X}\{C}>  {C}Telegram{A}    : {C}@ShePython{C}         ║
-      {C}   ║{C}<{X}\{C}>  {C}YouTube{A}     : {C}r2-{C}                ║
-      {A}   ║{C}<{X}\{C}>  {C}Second Account{Z}  : {C}@KeePusa{A}       ║
-      {C}   ╚{Z}══════════{C}══════════════════════{Z}════════{C}╝
+logo =f""" 
+                    <cHecker Tik v3>    
+         ╔════════════════════════════════════════╗
+         ║<\> Programmer : @kckkkkc               ║
+         ║<\> Tool : TikTok Checker User          ║
+         ║<\> YouTube : r2-                       ║
+         ║<\> Second Account : @KeePusa           ║
+         ╚════════════════════════════════════════╝
 """ ; print(logo)
 sa="4"
 if sa =="4":
