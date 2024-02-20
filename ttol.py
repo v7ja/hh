@@ -8,10 +8,10 @@ fz = datetime.datetime.now()
 logo =f""" 
                     <cHecker Tik v3>    
          ╔════════════════════════════════════════╗
-         ║<\> Programmer : @kckkkkc               ║
-         ║<\> Tool : TikTok Checker User          ║
-         ║<\> YouTube : r2-                       ║
-         ║<\> Second Account : @KeePusa           ║
+         ║      <\> Programmer : @kckkkkc         ║
+         ║      <\> Tool : TikTok Checker User    ║
+         ║      <\> YouTube : r2-                 ║
+         ║      <\> Second Account : @KeePusa     ║
          ╚════════════════════════════════════════╝
 """ ; print(logo)
 sa="4"
