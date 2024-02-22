@@ -6,12 +6,10 @@ s = Fore.LIGHTRED_EX
 y = Fore.YELLOW
 fz = datetime.datetime.now()
 logo =f""" 
-                    <cHecker Tik v3>    
+                     <cHecker Tik v3>    
          ╔════════════════════════════════════════╗
          ║      <\> Programmer : @kckkkkc         ║
-         ║      <\> Tool : TikTok Checker User    ║
-         ║      <\> YouTube : r2-                 ║
-         ║      <\> Second Account : @KeePusa     ║
+         ║      <\> iG : @kkkcckc                 ║
          ╚════════════════════════════════════════╝
 """ ; print(logo)
 sa="4"
