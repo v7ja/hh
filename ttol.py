@@ -92,7 +92,7 @@ def climed(client,username):
         username=username))
         client(functions.channels.EditPhotoRequest(
         channel=username,
-        photo=client.upload_file(get("https://telegra.ph/file/0a10d2c09c2e044de15ac.jpg").content)))
+        photo=client.upload_file(get("https://telegra.ph/file/23423b32334d1d4a70aad.jpg").content)))
         client.delete_messages(username, [client.get_messages(username, limit=1)[0]])
         with open('videoclaim.mp4','wb') as video :
           video.write(get('https://telegra.ph/file/'+id).content)
@@ -126,23 +126,9 @@ def checker(username,client):
 			print('- Error UserName : '+username+' .')
 # for generate username
 def usernameG():
-        mm = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-        nn = ''.join(choice('1234567890') for i in range(1))
-        ww = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-        hh = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-        c = (mm+mm+mm+"_"+nn)
-        c1 = (mm+"_"+nn +"_"+hh)
-        c2 = (mm+"_"+mm+mm+ww)
-        c3 = (mm+mm+mm+nn+hh)
-        c4 = (hh+"_"+mm+mm+mm)
-        c5 = (nn+mm+mm +"_" +mm)
-        c6 = (mm+"_"+nn+nn+nn)
-        c7 = (hh+mm+ww+ww+ww)
-        c8 = (mm+hh+ww+ww+ww)
-        c9 = (mm+"_"+mm+nn+nn)
-        c10 = (mm+nn+nn+nn+nn+ww)
-        abd = (c,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10)
-        username = random.choice(abd)
+	k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+	n = ''.join(choice('1234567890') for i in range(1))
+	return k+'_'+n+k+n
 # start checking
 def start(client,username):
 	try:ok = fragment(username)
