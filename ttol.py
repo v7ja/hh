@@ -125,8 +125,8 @@ def checker(username,client):
 # for generate username
 def usernameG():
   k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-		c = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-		a = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  c = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  a = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
   n = ''.join(choice('1234567890') for i in range(1))
   return k+k+k+n+c
 		k+k+k+a+n		
