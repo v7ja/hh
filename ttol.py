@@ -141,7 +141,7 @@ def usernameG():
         c9 = (mm+"_"+mm+nn+nn)
         c10 = (mm+nn+nn+nn+nn+ww)
         abd = (c,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10)
-        username = str("".join(random.choice(abd)))
+        username = random.choice(abd)
 # start checking
 def start(client,username):
 	try:ok = fragment(username)
