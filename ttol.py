@@ -124,12 +124,26 @@ def checker(username,client):
 			print('- Error UserName : '+username+' .')
 # for generate username
 def usernameG():
-	k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-	n = ''.join(choice('1234567890') for i in range(2))
-kh = k+n+k+n+k
-hk = k+k+n+k+n
-hgg = (kh, hk)
-return (hgg)
+	AB = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+    num = '1234567890'
+    while True:
+        mm = str("".join(random.choice(AB) for i in range(1)))
+        nn = str("".join(random.choice(AB) for i in range(1)))
+        ww = str("".join(random.choice(num) for i in range(1)))
+        hh = str("".join(random.choice(AB) for i in range(1)))
+        c = (mm+mm+mm+"_"+nn)
+        c1 = (mm+"_"+nn +"_"+hh)
+        c2 = (mm+"_"+mm+mm+ww)
+        c3 = (mm+mm+mm+nn+hh)
+        c4 = (hh+"_"+mm+mm+mm)
+        c5 = (nn+mm+mm +"_" +mm)
+        c6 = (mm+"_"+nn+nn+nn)
+        c7 = (hh+mm+ww+ww+ww)
+        c8 = (mm+hh+ww+ww+ww)
+        c9 = (mm+"_"+mm+nn+nn)
+        c10 = (mm+nn+nn+nn+nn+ww)
+        abd = (c,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10)
+        username = str("".join(random.choice(abd)))
 # start checking
 def start(client,username):
 	try:ok = fragment(username)
