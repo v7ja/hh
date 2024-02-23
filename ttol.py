@@ -1,4 +1,5 @@
-from os import system, name, path, requests
+from os import system, name, path
+import requests
 from time import sleep
 from random import choice
 from base64 import b64decode
