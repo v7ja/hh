@@ -177,7 +177,7 @@ def work():
 		username = usernameG()
 		with open('banned4.txt', 'r') as file:
 			check_username = file.read()
-		if username in check_username:
+		if username in check_username :
 			print('- Banned1 UserName : '+username+' .')
 			continue
 		start(session,username)
