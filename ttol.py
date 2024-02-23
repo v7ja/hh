@@ -1,9 +1,9 @@
 import requests
 
 logo =f""" 
-          <Welcome To Session Tool>             ╔════════════════════════════════════════╗
-║      <\> Programmer : @kckkkkc         ║
-║      <\> iG : @kkkcckc                 ║         ╚════════════════════════════════════════╝
+          < Welcome To Session Tool >            
+          <\> Programmer : @kckkkkc         
+          <\> iG : @kkkcckc                 	       
 """ ; print(logo)
 
 user = input("EnTeR uSer : ")
