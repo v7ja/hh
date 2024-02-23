@@ -124,13 +124,10 @@ def checker(username,client):
 			print('- Error UserName : '+username+' .')
 # for generate username
 def usernameG():
-	AB = 'QWERTYUIOPASDFGHJKLZXCVBNM'
-    num = '1234567890'
-    while True:
-        mm = str("".join(random.choice(AB) for i in range(1)))
-        nn = str("".join(random.choice(AB) for i in range(1)))
-        ww = str("".join(random.choice(num) for i in range(1)))
-        hh = str("".join(random.choice(AB) for i in range(1)))
+        mm = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+        nn = ''.join(choice('1234567890') for i in range(1))
+        ww = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+        hh = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
         c = (mm+mm+mm+"_"+nn)
         c1 = (mm+"_"+nn +"_"+hh)
         c2 = (mm+"_"+mm+mm+ww)
