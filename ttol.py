@@ -1,6 +1,4 @@
 from os import system, name, path
-import requests
-import random
 from time import sleep
 from random import choice
 from base64 import b64decode
@@ -102,70 +100,72 @@ def climed(client,username):
     except Exception as e:client.send_message('me',f'⌯ Error Message .\nMessage : {e} .');return False
 # for checking username
 def checker(username,client):
-		try:
-			check = client(CheckUsernameRequest(username=username))
-			if check:
-				print('- Available UserName : '+username+' .')
-				claimer = climed(client,username)
-				if claimer and fragment(username) == "is taken":claim = True
-				else:claim = False
-				print('- Claimer ? '+str(claim)+'\n'+'_ '*20)
-				telegram(client,claim,username)
-				flood = channels2(client,username)
-				if not flood:
-					with open('flood.txt', 'a') as floodX:
-						floodX.write(username + "\n")
-			else:
-				print('- Taken UserName : '+username+' .')
-		except errors.rpcbaseerrors.BadRequestError:
-			print('- Banned UserName : '+username+' .')
-			open("banned4.txt","a").write(username+'\n')
-		except errors.FloodWaitError as timer:
-			print('- Flood Account [ '+timer.seconds+' Secound ] .')
-		except errors.UsernameInvalidError:
-			print('- Error UserName : '+username+' .')
+    try:
+      check = client(CheckUsernameRequest(username=username))
+      if check:
+        print('- Available UserName : '+username+' .')
+        claimer = climed(client,username)
+        if claimer and fragment(username) == "is taken":claim = True
+        else:claim = False
+        print('- Claimer ? '+str(claim)+'\n'+'_ '*20)
+        telegram(client,claim,username)
+        flood = channels2(client,username)
+        if not flood:
+          with open('flood.txt', 'a') as floodX:
+            floodX.write(username + "\n")
+      else:
+        print('- Taken UserName : '+username+' .')
+    except errors.rpcbaseerrors.BadRequestError:
+      print('- Banned UserName : '+username+' .')
+      open("banned4.txt","a").write(username+'\n')
+    except errors.FloodWaitError as timer:
+      print('- Flood Account [ '+timer.seconds+' Secound ] .')
+    except errors.UsernameInvalidError:
+      print('- Error UserName : '+username+' .')
 # for generate username
 def usernameG():
-	k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-	n = ''.join(choice('1234567890') for i in range(1))
-	return k+'_'+n+k+n
+  k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  a = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  b = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  n = ''.join(choice('1234567890') for i in range(1))
+  return k+b+b+'_'+k
 # start checking
 def start(client,username):
-	try:ok = fragment(username)
-	except:return
-	try:
-		if not ok:
-			checker(username,client)
-		elif ok == "is taken":
-			print('- Taken UserName : '+username+' .')
-		else:
-			print('- UserName Availabe In Fragment.com : '+username+' .')
-	except Exception as e:print(e)
+  try:ok = fragment(username)
+  except:return
+  try:
+    if not ok:
+      checker(username,client)
+    elif ok == "is taken":
+      print('- Taken UserName : '+username+' .')
+    else:
+      print('- UserName Availabe In Fragment.com : '+username+' .')
+  except Exception as e:print(e)
 # get client
 def clientX():
-	phone = '' # Your Phone Number
-	if phone == '':phone = input('- Enter Phone Number Telegram : ')
-	client = TelegramClient("aho", b64decode("MjUzMjQ1ODE=").decode(),b64decode("MDhmZWVlNWVlYjZmYzBmMzFkNWYyZDIzYmIyYzMxZDA=").decode())
-	try:client.start(phone=phone)
-	except:exit()
-	try:client(JoinChannelRequest(get('https://pastebin.com/raw/SgDUMsFb').text))
-	except:pass
-	clear()
-	return client
+  phone = '' # Your Phone Number
+  if phone == '':phone = input('- Enter Phone Number Telegram : ')
+  client = TelegramClient("aho", b64decode("MjUzMjQ1ODE=").decode(),b64decode("MDhmZWVlNWVlYjZmYzBmMzFkNWYyZDIzYmIyYzMxZDA=").decode())
+  try:client.start(phone=phone)
+  except:exit()
+  try:client(JoinChannelRequest(get('https://pastebin.com/raw/SgDUMsFb').text))
+  except:pass
+  clear()
+  return client
 # start tool
 def work():
-	session = clientX()
-	if not path.exists('banned4.txt'):
-		with open('banned4.txt','w') as new:pass
-	if not path.exists('flood.txt'):
-		with open('flood.txt','w') as new:pass
-	while True:
-		username = usernameG()
-		with open('banned4.txt', 'r') as file:
-			check_username = file.read()
-		if username in check_username :
-			print('- Banned1 UserName : '+username+' .')
-			continue
-		start(session,username)
+  session = clientX()
+  if not path.exists('banned4.txt'):
+    with open('banned4.txt','w') as new:pass
+  if not path.exists('flood.txt'):
+    with open('flood.txt','w') as new:pass
+  while True:
+    username = usernameG()
+    with open('banned4.txt', 'r') as file:
+      check_username = file.read()
+    if username in check_username :
+      print('- Banned1 UserName : '+username+' .')
+      continue
+    start(session,username)
 if __name__ == "__main__":
-	work()
+  work()
