@@ -124,11 +124,11 @@ def checker(username,client):
       print('- Error UserName : '+username+' .')
 # for generate username
 def usernameG():
-  k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-  a = ''.join(choice('1234567890wertyuiopasdfghjklzxcvbnm') for i in range(1))
-  b = ''.join(choice('pouhxvcrjkil') for i in range(1))
+  k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm1234567890') for i in range(1))
+  a = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  b = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
   n = ''.join(choice('1234567890') for i in range(1))
-  return b+k+k+k+a
+  return b+k+k+'_'+k
 # start checking
 def start(client,username):
   try:ok = fragment(username)
