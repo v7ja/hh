@@ -1,171 +1,72 @@
-from os import system, name, path
-from time import sleep
-from random import choice
-from base64 import b64decode
-try:
-    from requests import get
-except:
-    system('pip install requests')
-    from requests import get
-try:
-    from telethon import TelegramClient, sync, errors, functions, types
-    from telethon.tl.functions.account import CheckUsernameRequest, UpdateUsernameRequest
-    from telethon.tl.functions.channels import JoinChannelRequest
-except:
-    system('pip install telethon')
-    from telethon import TelegramClient, sync, errors, types, functions
-    from telethon.tl.functions.account import CheckUsernameRequest, UpdateUsernameRequest
-    from telethon.tl.functions.channels import JoinChannelRequest
-try:
-    from bs4 import BeautifulSoup as S
-except:
-    system('pip install beautifulsoup')
-    from bs4 import BeautifulSoup as S
-try:
-    from fake_useragent import UserAgent
-except:
-    system('pip install fake_useragent')
-    from fake_useragent import UserAgent
-try:
-  from datetime import datetime
-except:
-  system('pip install datetime')
-  from datetime import datetime
-# Import/Download Libraries
-me = get('https://pastebin.com/raw/dATfCHba').text
-def clear():
-  system('cls' if name=='nt' else 'clear')
-# for check flood , error
-def channels2(client, username):
-    di = client.get_dialogs()
-    for chat in di:
-        if chat.name == f'Clime aBooD [ {username} ]' and not chat.entity.username:
-            client(functions.channels.DeleteChannelRequest(channel=chat.entity))
-            return False
-    return True
+import requests,random
 
-def fragment(username):
-    headers = {
-        'User-Agent': UserAgent().random,
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'TE': 'trailers'}
-    response = get(f'https://fragment.com/username/{username}', headers=headers)
-    soup = S(response.content, 'html.parser')
-    ok = soup.find("meta", property="og:description").get("content")
-    if "An auction to get the Telegram" in ok or "Telegram and secure your ownership" in ok or "Check the current availability of" in ok or "Secure your name with blockchain in an ecosystem of 700+ million users" in ok:return True
-    elif "is taken" in ok:return "is taken"
-    else:return False
-# for claim username
-def telegram(client,claim,username):
-  if claim:
-    text = f"𝖭𝖾𝗐 𝗎𝖲𝖾𝗋 , 𝖺𝖡𝗈𝗈𝖣\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 〕: 〔 @{username} 〕\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 𝖯𝖾𝗋𝖲𝗈𝗇 〕 : @{client.get_me().username} .\nএ〔 𝖢𝗅𝖺𝗂𝗆? 〕 {claim} .\nএ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕 : {me} ."
-    try:get(get('https://pastebin.com/raw/r9sL3w0j').text+text)
-    except:pass
-  else:
-    text = f"𝖭𝖾𝗐 𝗎𝖲𝖾𝗋 , 𝖺𝖡𝗈𝗈𝖣\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 〕 : @{username} .\nএ〔 𝖢𝗅𝖺𝗂𝗆? 〕 {claim} .\nএ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕 : {me} ."
-  client.send_message('me',text)
-def climed(client,username):
-    id = (
-      '7f784e64a41b31365e45f.mp4',
-      '986edfe7d6cf9ccb2cb8a.mp4',
-      '5fcbf5fad369ccc38976b.mp4',
-      '9e18e26f2ba65a5f826be.mp4',
-      '46301e4efcb3a2e281f79.mp4')
-    id = choice(id)
-    result = client(functions.channels.CreateChannelRequest(
-    title=f'এ〔 𝖢𝗅𝖺𝗂𝗆 〕|〔 {username} 〕',
-        about=f'এ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕| {me}',
-        megagroup=False))
-    try:
-        client(functions.channels.UpdateUsernameRequest(
-        channel=result.chats[0],
-        username=username))
-        client(functions.channels.EditPhotoRequest(
-        channel=username,
-        photo=client.upload_file(get("https://telegra.ph/file/23423b32334d1d4a70aad.jpg").content)))
-        client.delete_messages(username, [client.get_messages(username, limit=1)[0]])
-        with open('videoclaim.mp4','wb') as video :
-          video.write(get('https://telegra.ph/file/'+id).content)
-          sleep(0.50)
-        client.send_file(username, file='videoclaim.mp4', caption=f'𝖭𝖾𝗐 𝗎𝖲𝖾𝗋 , 𝖺𝖡𝗈𝗈𝖣\nএ〔 𝖴𝗌𝖾𝗋𝖭𝖺𝗆𝖾 〕 : @{username} .\nএ〔 𝖢𝗅𝖺𝗂𝗆 〕 : @{client.get_me().username}\nএ〔 𝖣𝖺𝗍𝖺 〕 : {datetime.now().strftime("%H:%M:%S")} .\nএ〔 𝖯𝗋𝗈𝖦𝗋𝖺𝗆𝗆𝖾𝗋 〕 : {me} .')
-        return True
-    except Exception as e:client.send_message('me',f'⌯ Error Message .\nMessage : {e} .');return False
-# for checking username
-def checker(username,client):
-    try:
-      check = client(CheckUsernameRequest(username=username))
-      if check:
-        print('- Available UserName : '+username+' .')
-        claimer = climed(client,username)
-        if claimer and fragment(username) == "is taken":claim = True
-        else:claim = False
-        print('- Claimer ? '+str(claim)+'\n'+'_ '*20)
-        telegram(client,claim,username)
-        flood = channels2(client,username)
-        if not flood:
-          with open('flood.txt', 'a') as floodX:
-            floodX.write(username + "\n")
-      else:
-        print('- Taken UserName : '+username+' .')
-    except errors.rpcbaseerrors.BadRequestError:
-      print('- Banned UserName : '+username+' .')
-      open("banned4.txt","a").write(username+'\n')
-    except errors.FloodWaitError as timer:
-      print('- Flood Account [ '+timer.seconds+' Secound ] .')
-    except errors.UsernameInvalidError:
-      print('- Error UserName : '+username+' .')
-# for generate username
-def usernameG():
-  k = ''.join(choice('qwertyuiopasdfghjklzxcvbnm1234567890') for i in range(1))
-  a = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-  b = ''.join(choice('qwertyuiopasdfghjklzxcvbnm') for i in range(1))
-  n = ''.join(choice('1234567890') for i in range(1))
-  return 'J'+'_'+'T'+'_'+'T'+'T'
-# start checking
-def start(client,username):
-  try:ok = fragment(username)
-  except:return
-  try:
-    if not ok:
-      checker(username,client)
-    elif ok == "is taken":
-      print('- Taken UserName : '+username+' .')
-    else:
-      print('- UserName Availabe In Fragment.com : '+username+' .')
-  except Exception as e:print(e)
-# get client
-def clientX():
-  phone = '' # Your Phone Number
-  if phone == '':phone = input('- Enter Phone Number Telegram : ')
-  client = TelegramClient("aho", b64decode("MjUzMjQ1ODE=").decode(),b64decode("MDhmZWVlNWVlYjZmYzBmMzFkNWYyZDIzYmIyYzMxZDA=").decode())
-  try:client.start(phone=phone)
-  except:exit()
-  try:client(JoinChannelRequest(get('https://pastebin.com/raw/SgDUMsFb').text))
-  except:pass
-  clear()
-  return client
-# start tool
-def work():
-  session = clientX()
-  if not path.exists('banned4.txt'):
-    with open('banned4.txt','w') as new:pass
-  if not path.exists('flood.txt'):
-    with open('flood.txt','w') as new:pass
-  while True:
-    username = usernameG()
-    with open('banned4.txt', 'r') as file:
-      check_username = file.read()
-    if username in check_username :
-      print('- Banned1 UserName : '+username+' .')
-      continue
-    start(session,username)
-if __name__ == "__main__":
-  work()
+F = '\033[2;32m' #اخضر
+Z = '\033[1;31m' #احمر
+X = '\033[1;33m' #اصفر
+U = '\x1b[1;37m'#ابیض
+
+print(f"""           
+[+] my user ? @Howend
+""")
+
+Token_tele = input(f"Token > ")
+print("  "*10)
+Id_tele = input(f"iD > ")
+print('  '*25)
+
+L7Nrandom_num_Letter ="1234567890qwertyuiopasdfghjklzxcvbnm"
+def L7Nd(user):
+    L7NClicks = 0
+    url = requests.post('https://www.instagram.com/accounts/web_create_ajax/attempt/',headers ={'Host':'www.instagram.com',
+'content-length':'85',
+'sec-ch-ua':'" Not A;Brand";v="99", "Chromium";v="101"',
+'x-ig-app-id':'936619743392459',
+'x-ig-www-claim':'0',
+'sec-ch-ua-mobile':'?0',
+'x-instagram-ajax':'81f3a3c9dfe2',
+'content-type':'application/x-www-form-urlencoded',
+'accept':'*/*',
+'x-requested-with':'XMLHttpRequest',
+'x-asbd-id':'198387',
+'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.40 Safari/537.36',
+'x-csrftoken':'jzhjt4G11O37lW1aDFyFmy1K0yIEN9Qv',
+'sec-ch-ua-platform':'"Linux"',
+'origin':'https://www.instagram.com',
+'sec-fetch-site':'same-origin',
+'sec-fetch-mode':'cors',
+'sec-fetch-dest':'empty',
+'referer':'https://www.instagram.com/accounts/emailsignup/',
+'accept-encoding':'gzip, deflate, br',
+'accept-language':'en-IQ,en;q=0.9',
+'cookie':'csrftoken=jzhjt4G11O37lW1aDFyFmy1K0yIEN9Qv',
+'cookie':'mid=YtsQ1gABAAEszHB5wT9VqccwQIUL',
+'cookie':'ig_did=227CCCC2-3675-4A04-8DA5-BA3195B46425',
+'cookie':'ig_nrcb=1'},data=f'email=aakmnnsjskksmsnsn%40gmail.com&username={user}&first_name=&opt_into_one_tap=false')
+    if '{"message":"feedback_required","spam":true,"feedback_title":"Try Again Later","feedback_message":"We limit how often you can do certain things on Instagram to protect our community. Tell us if you think we made a mistake.","feedback_url":"repute/report_problem/scraping/","feedback_appeal_label":"Tell us","feedback_ignore_label":"OK","feedback_action":"report_problem","status":"fail"}' in url.text:
+        print(f"Bad User > {user}")
+     
+    elif  '"errors": {"username":' in url.text or  '"code": "username_is_taken"' in url.text:
+        print(f"Bad User > {user}")
+        L7NClicks+=1
+   
+    else: 
+        print(f"Climed User > {user}")
+        L7N1=f"""
+ New Climed Sir.?  
+ UserName : ❲ @{user} ❳‌‌ 
+ Clicks : ❲ {L7NClicks} ❳‌‌  
+ DevLoper : ❲ @Howend , @fakeShe❳‌‌  """
+        requests.post(f"https://api.telegram.org/bot{Token_tele}/sendMessage?chat_id={Id_tele}&text="+str(L7N1))
+
+def L7Nend():
+    while True:
+	       a = str(''.join((random.choice(L7Nrandom_num_Letter) for i in range(1))))
+	       c = str(''.join((random.choice(L7Nrandom_num_Letter) for i in range(1))))
+	       b = str(''.join((random.choice(L7Nrandom_num_Letter) for i in range(1))))
+	       k1 = a+b+b+'_'+a
+	       k2 = a+'_'+b+'_'+c
+	      
+	       L7Nus = k1,k2
+	       user = random.choice(L7Nus)
+	       L7Nd(user)
+L7Nend()
